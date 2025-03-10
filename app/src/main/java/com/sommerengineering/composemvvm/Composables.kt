@@ -1,7 +1,9 @@
 package com.sommerengineering.composemvvm
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -32,6 +34,8 @@ fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
         }) { padding ->
 
         Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)) {
@@ -39,8 +43,7 @@ fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
             if (isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier
-                        .width(64.dp)
-                        .align(Alignment.CenterHorizontally),
+                        .width(64.dp),
                     color = MaterialTheme.colorScheme.secondary,
                     trackColor = MaterialTheme.colorScheme.surfaceVariant,)
             }
