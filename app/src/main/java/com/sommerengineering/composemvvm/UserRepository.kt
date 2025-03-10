@@ -1,12 +1,15 @@
 package com.sommerengineering.composemvvm
 
+import javax.inject.Inject
+
 data class User(
     val id: Int,
     val name: String,
     val email: String
 )
 
-class UserRepository {
+
+class UserRepository @Inject constructor() {
 
     // simulate network call
     fun getUsers() : List<User> {
