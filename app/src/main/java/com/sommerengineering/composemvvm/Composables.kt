@@ -5,13 +5,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -21,6 +24,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
 
     val users = viewModel.users.value
+    val isLoading = viewModel.isLoading.value
 
     Scaffold(
         topBar = {
@@ -32,11 +36,21 @@ fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
                 .fillMaxSize()
                 .padding(padding)) {
 
+            if (isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .width(64.dp)
+                        .align(Alignment.CenterHorizontally),
+                    color = MaterialTheme.colorScheme.secondary,
+                    trackColor = MaterialTheme.colorScheme.surfaceVariant,)
+            }
+
             users.forEach {
                 UserCard(it)
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
+
     }
 }
 
