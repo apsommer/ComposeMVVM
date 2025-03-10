@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -30,11 +32,11 @@ fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("User list")})
+            CenterAlignedTopAppBar(title = { Text("User list")})
         }) { padding ->
 
         Column(
-            verticalArrangement = Arrangement.Center,
+            // verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .fillMaxSize()
@@ -60,9 +62,19 @@ fun UserListScreen(viewModel: UserViewModel = hiltViewModel()) {
 @Composable
 fun UserCard(user: User) {
     Card(
-        modifier = Modifier.padding(16.dp)) {
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)) {
 
-        Text(text = "Name: ${user.name}", style = MaterialTheme.typography.displayLarge)
-        Text(text ="Email: ${user.email}", style = MaterialTheme.typography.displaySmall)
+        Text(
+            text = "Name: ${user.name}",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier
+                .padding(8.dp))
+        Text(
+            text ="Email: ${user.email}",
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier
+                .padding(8.dp))
     }
 }
